@@ -1,0 +1,25 @@
+{
+  "name": "joe-biden-bot",
+  "version": "1.0.0",
+  "description": "a discord bot",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "bash ./start.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ico277/joe-biden-bot.git"
+  },
+  "author": "ico277",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/ico277/joe-biden-bot/issues"
+  },
+  "homepage": "https://github.com/ico277/joe-biden-bot#readme",
+  "dependencies": {
+    "@discordjs/rest": "^0.2.0-canary.0",
+    "discord-api-types": "^0.26.1",
+    "discord.js": "^13.6.0",
+    "node-fetch": "^2.6.7"
+  }
+}
