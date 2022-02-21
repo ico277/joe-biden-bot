@@ -179,45 +179,53 @@ client.on('interactionCreate', async interaction => {
         let tags = interaction.options.getString('tags');
         let blacklist = interaction.options.getString('blacklist');
 
-        let url = "https://e621.net/posts.json?limit=5";
+        let url = "https://e621.net/posts.json?page=1";
         if (tags) {
             url += '&tags=' + encodeURIComponent(tags);
         }
         if (tags) {
-            url += '&blacklist=' + encodeURIComponent(blacklist);
+            url += '&blacklist=cub+underage+' + encodeURIComponent(blacklist);
         }
 
         fetch(url, fetch_options)
             .then(res => res.json())
             .then(async json => {
                 let { posts } = json;
-                let post = posts[Math.floor((Math.random() * posts.length))];
-                await interaction.reply(post.file.url);
-            });
-        } else if (interaction.commandName == 'e926') {
-            if (!interaction.channel.nsfw) {
-                await interaction.reply('This is not a NSFW channel!');
-                return;
-            }
-            let tags = interaction.options.getString('tags');
-            let blacklist = interaction.options.getString('blacklist');
-    
-            let url = "https://e926.net/posts.json?limit=5";
-            if (tags) {
-                url += '&tags=' + encodeURIComponent(tags);
-            }
-            if (tags) {
-                url += '&blacklist=' + encodeURIComponent(blacklist);
-            }
-    
-            fetch(url, fetch_options)
-                .then(res => res.json())
-                .then(async json => {
-                    let { posts } = json;
+                if (posts) {
                     let post = posts[Math.floor((Math.random() * posts.length))];
                     await interaction.reply(post.file.url);
-                });
+                } else {
+                    await interaction.reply('Could not find any posts with those tags! be sure that tag exists!')
+                }
+            });
+    } else if (interaction.commandName == 'e926') {
+        if (!interaction.channel.nsfw) {
+            await interaction.reply('This is not a NSFW channel!');
+            return;
         }
+        let tags = interaction.options.getString('tags');
+        let blacklist = interaction.options.getString('blacklist');
+
+        let url = "https://e926.net/posts.json?page=1";
+        if (tags) {
+            url += '&tags=' + encodeURIComponent(tags);
+        }
+        if (tags) {
+            url += '&blacklist=cub+underage+' + encodeURIComponent(blacklist);
+        }
+
+        fetch(url, fetch_options)
+            .then(res => res.json())
+            .then(async json => {
+                let { posts } = json;
+                if (posts) {
+                    let post = posts[Math.floor((Math.random() * posts.length))];
+                    await interaction.reply(post.file.url);
+                } else {
+                    await interaction.reply('Could not find any posts with those tags! be sure that tag exists!')
+                }
+            });
+    }
 })
 
 client.login(process.env.TOKEN);
