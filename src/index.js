@@ -217,7 +217,7 @@ client.on('interactionCreate', async interaction => {
         fetch(url, fetch_options)
             .then(res => res.json())
             .then(async json => {
-                let posts = json.["posts"];
+                let posts = json["posts"];
                 if (posts) {
                     let post = posts[Math.floor((Math.random() * posts.length))];
                     await interaction.reply(post.file.url);
