@@ -193,7 +193,7 @@ client.on('interactionCreate', async interaction => {
                 let posts = json["posts"];
                 if (posts) {
                     let post = posts[Math.floor((Math.random() * posts.length))];
-                    if (post.file)
+                    if (post.file.url != null || post.file.url != undefined)
                         await interaction.reply(post.file.url);
                     else
                         await interaction.reply('Could not find any posts with those tags! be sure that tag exists!');
@@ -223,7 +223,7 @@ client.on('interactionCreate', async interaction => {
                 let posts = json["posts"];
                 if (posts) {
                     let post = posts[Math.floor((Math.random() * posts.length))];
-                    if (post.file)
+                    if (post.file.url != null || post.file.url != undefined)
                         await interaction.reply(post.file.url);
                     else
                         await interaction.reply('Could not find any posts with those tags! be sure that tag exists!');
