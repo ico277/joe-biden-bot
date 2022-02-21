@@ -193,9 +193,12 @@ client.on('interactionCreate', async interaction => {
                 let posts = json["posts"];
                 if (posts) {
                     let post = posts[Math.floor((Math.random() * posts.length))];
-                    await interaction.reply(post.file.url);
+                    if (post)
+                        await interaction.reply(post.file.url);
+                    else
+                        await interaction.reply('Could not find any posts with those tags! be sure that tag exists!');
                 } else {
-                    await interaction.reply('Could not find any posts with those tags! be sure that tag exists!')
+                    await interaction.reply('Could not find any posts with those tags! be sure that tag exists!');
                 }
             });
     } else if (interaction.commandName == 'e926') {
@@ -220,9 +223,12 @@ client.on('interactionCreate', async interaction => {
                 let posts = json["posts"];
                 if (posts) {
                     let post = posts[Math.floor((Math.random() * posts.length))];
-                    await interaction.reply(post.file.url);
+                    if (post)
+                        await interaction.reply(post.file.url);
+                    else
+                        await interaction.reply('Could not find any posts with those tags! be sure that tag exists!');
                 } else {
-                    await interaction.reply('Could not find any posts with those tags! be sure that tag exists!')
+                    await interaction.reply('Could not find any posts with those tags! be sure that tag exists!');
                 }
             });
     }
